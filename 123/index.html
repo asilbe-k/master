@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up & Sign In</title>
+    <style>
+        body {
+            background: url('https://avatars.mds.yandex.net/i?id=ef7e0c3c1b3b9652e3e8d55f9f98fe7f_l-4566166-images-thumbs&n=13') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 350px;
+            background: rgba(193, 236, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tab {
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 2px solid transparent;
+        }
+        .tab.active {
+            border-bottom: 2px solid #fff;
+        }
+        .form {
+            display: none;
+        }
+        .form.active {
+            display: block;
+        }
+        .form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+        .form button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgb(0, 183, 255);
+            color: #fff;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <span id="signinTab" class="tab active">SIGN IN</span>
+            <span id="signupTab" class="tab">SIGN UP</span>
+        </div>
+        <form id="signinForm" class="form active">
+            <input type="text" id="signin-username" placeholder="Username" required>
+            <input type="password" id="signin-password" placeholder="Password" required>
+            <button type="submit">Sign In</button>
+        </form>
+        <form id="signupForm" class="form">
+            <input type="text" id="signup-username" placeholder="Username" required>
+            <input type="email" id="signup-email" placeholder="Email" required>
+            <input type="password" id="signup-password" placeholder="Password" required>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <script>
+        const signinTab = document.getElementById("signinTab");
+        const signupTab = document.getElementById("signupTab");
+        const signinForm = document.getElementById("signinForm");
+        const signupForm = document.getElementById("signupForm");
+
+        signinTab.addEventListener("click", () => {
+            signinTab.classList.add("active");
+            signupTab.classList.remove("active");
+            signinForm.classList.add("active");
+            signupForm.classList.remove("active");
+        });
+
+        signupTab.addEventListener("click", () => {
+            signupTab.classList.add("active");
+            signinTab.classList.remove("active");
+            signupForm.classList.add("active");
+            signinForm.classList.remove("active");
+        });
+
+        signupForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            let password = document.getElementById("signup-password").value.trim();
+            let confirmPassword = document.getElementById("confirm-password").value.trim();
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+            alert("Sign up successful!");
+            window.open("home.html", "_blank");
+        });
+
+        signinForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            alert("Sign in successful!");
+            window.open("products.html", "_blank");
+        });
+    </script>
+</body>
+</html>
